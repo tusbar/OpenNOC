@@ -1,6 +1,26 @@
-<head>
-  <title>OpenNOC</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-</head>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#on-nav-links" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url "home" %}">OpenNOC</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="on-nav-links">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="{% url "admin:index" %}"><i class="fa fa-cogs"></i> Admin</a>
+        </li>
+      </ul>
+      <p class="navbar-text navbar-right">
+        Welcome, <strong>{% firstof user.get_short_name user.get_username %}</strong>
+      </p>
+    </div>
+  </div>
+</nav>
