@@ -7,9 +7,9 @@ const BASE = path.join(process.cwd(), 'src');
 const ASSETS = path.join(BASE, 'assets');
 
 const PATHS = {
-    app   : ASSETS,
-    style : path.join(ASSETS, 'style'),
-    build : path.join(BASE, 'static')
+    app: ASSETS,
+    style: path.join(ASSETS, 'styles'),
+    build: path.join(BASE, 'static')
 };
 
 module.exports = options => ({
@@ -34,12 +34,12 @@ module.exports = options => ({
             ]
         }, {
             test: /\.less$/,
-            loader: options.localLessLoader,
-            exclude: PATHS.style
+            loader: options.globalLessLoader,
+            include: path.join(PATHS.style, 'global')
         }, {
             test: /\.less$/,
-            loader: options.globalLessLoader,
-            include: PATHS.style
+            loader: options.vendorLessLoader,
+            include: path.join(PATHS.style, 'vendor')
         }, {
             test: /\.(eot|svg|ttf|woff|woff2)(\?.*$|$)/,
             loaders: [
@@ -58,6 +58,11 @@ module.exports = options => ({
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
+        }),
+
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
         })
     ]),
 
@@ -69,7 +74,6 @@ module.exports = options => ({
         },
         modules: [
             PATHS.app,
-            // 'node_modules'
             'node_modules'
         ],
         extensions: [

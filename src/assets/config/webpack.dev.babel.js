@@ -9,8 +9,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // ## //
 
 const css = {
-    local: new ExtractTextPlugin('styles/local.css'),
-    global: new ExtractTextPlugin('styles/global.css')
+    global: new ExtractTextPlugin('styles/global.css'),
+    vendor: new ExtractTextPlugin('styles/vendor.css')
 };
 
 module.exports = base({
@@ -26,27 +26,22 @@ module.exports = base({
     plugins: [
         new webpack.NoErrorsPlugin(),
 
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        }),
-
         new BundleTracker({
             filename: './src/assets/config/webpack.dev.stats.json'
         }),
 
-        css.global,
-        css.local
+        css.vendor,
+        css.global
     ],
 
-    localLessLoader: css.local.extract([
-        'css?modules&importLoaders=1&localIdentName=[folder]__[local]-[hash:base64:5]',
+    globalLessLoader: css.global.extract([
+        'css',
         'resolve-url',
         'postcss',
         'less'
     ]),
 
-    globalLessLoader: css.global.extract([
+    vendorLessLoader: css.vendor.extract([
         'css',
         'resolve-url',
         'postcss',
