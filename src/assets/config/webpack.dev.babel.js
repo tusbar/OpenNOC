@@ -35,17 +35,17 @@ module.exports = base({
     ],
 
     globalLessLoader: css.global.extract([
-        'css',
+        'css?sourceMap',
         'resolve-url',
         'postcss',
-        'less'
+        'less?sourceMap'
     ]),
 
     vendorLessLoader: css.vendor.extract([
-        'css',
+        'css?sourceMap',
         'resolve-url',
         'postcss',
-        'less'
+        'less?sourceMap'
     ]),
 
     postcssPlugins: [
