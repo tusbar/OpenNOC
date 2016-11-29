@@ -10,7 +10,7 @@ Manage your NOC with only one tool.
 
 ## Requirements
 
-TODO :)
+TODO :) (but python, django & ldap is a good start)
 
 ## Usage
 
