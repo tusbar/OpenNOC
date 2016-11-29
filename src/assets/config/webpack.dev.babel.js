@@ -4,8 +4,14 @@ const webpack           = require('webpack');
 const base              = require('./webpack.base.babel');
 
 const BundleTracker     = require('webpack-bundle-tracker')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // ## //
+
+const css = {
+    local: new ExtractTextPlugin('styles/local.css'),
+    global: new ExtractTextPlugin('styles/global.css')
+};
 
 module.exports = base({
     entry: [
@@ -27,24 +33,25 @@ module.exports = base({
 
         new BundleTracker({
             filename: './src/assets/config/webpack.dev.stats.json'
-        })
+        }),
+
+        css.global,
+        css.local
     ],
 
-    localLessLoader: [
-        'style',
+    localLessLoader: css.local.extract([
         'css?modules&importLoaders=1&localIdentName=[folder]__[local]-[hash:base64:5]',
         'resolve-url',
         'postcss',
         'less'
-    ].join('!'),
+    ]),
 
-    globalLessLoader: [
-        'style',
+    globalLessLoader: css.global.extract([
         'css',
         'resolve-url',
         'postcss',
         'less'
-    ].join('!'),
+    ]),
 
     postcssPlugins: [
         require('postcss-focus')(),
