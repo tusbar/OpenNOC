@@ -2,3 +2,5 @@ chromote
 django
 django-auth-ldap
 millipede
+
+django-webpack-loader==0.4.1

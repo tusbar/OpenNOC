@@ -1,5 +1,8 @@
-venv
-virtualenv
+venv/
+node_modules/
+
+src/static/
+src/assets/config/*.json
 
 *.pyc
 *.sqlite3

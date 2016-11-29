@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -121,8 +123,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
 )
+
+
+# Webpack loader configuration
+# https://github.com/owais/django-webpack-loader
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+    'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'assets/config/webpack.dev.stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+    }
+}
+
+
+# Common URLs
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
