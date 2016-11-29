@@ -1,0 +1,4 @@
+chromote
+django
+django-auth-ldap
+millipede
