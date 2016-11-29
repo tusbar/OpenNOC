@@ -2,11 +2,19 @@
 
 ## Overview
 
+NOC is for Network Operations Center.
+
 ## Description
+
+Manage your NOC with only one tool.
 
 ## Requirements
 
+TODO :)
+
 ## Usage
+
+TODO :)
 
 ## Development
 
