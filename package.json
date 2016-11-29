@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack --watch --config src/assets/config/webpack.dev.babel"
+    "start": "cross-env NODE_ENV=development webpack --progress --watch --config src/assets/config/webpack.dev.babel"
   },
   "repository": {
     "type": "git",
